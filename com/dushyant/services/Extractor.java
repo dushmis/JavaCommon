@@ -76,7 +76,7 @@ public class Extractor<E extends DBTable> extends ExtractorService<E> {
   /*
    * (non-Javadoc)
    * 
-   * @see com.youbb.services.ExtractorService#extract()
+   * @see com.dushyant.services.ExtractorService#extract()
    */
   @Override
   public List<E> extract() throws SQLException, SecurityException, IllegalArgumentException,
