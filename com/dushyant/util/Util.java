@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -163,8 +164,14 @@ public class Util {
    * @param <R>       R
    * @return returns R
    */
-  public static <R> R use(AutoCloseable closeable, Function<AutoCloseable, R> function) {
+  public static <R> Optional<R> use(AutoCloseable closeable, Function<AutoCloseable, R> function) {
     Objects.requireNonNull(closeable);
-    return function.apply(closeable);
+    try (closeable) {
+      final R apply = function.apply(closeable);
+      return Optional.ofNullable(apply);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return Optional.empty();
   }
 }
