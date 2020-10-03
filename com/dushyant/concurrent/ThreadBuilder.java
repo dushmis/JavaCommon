@@ -27,6 +27,7 @@ import java.util.function.Supplier;
  * </pre>
  * </p>
  */
+@SuppressWarnings({"unused", "RedundantSuppression"})
 public class ThreadBuilder {
   private boolean daemon = false;
   private UncaughtExceptionHandler uncaughtExceptionHandler;
